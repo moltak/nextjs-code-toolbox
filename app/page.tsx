@@ -1,45 +1,50 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 export default function CsvToJson() {
-  const [csv, setCsv] = useState('');
-  const [json, setJson] = useState('');
+  const [csv, setCsv] = useState('')
+  const [json, setJson] = useState('')
 
   const handleConvert = () => {
     try {
-      const [headers, ...rows] = csv.trim().split('\n').map((row) => row.split(','));
+      const [headers, ...rows] = csv
+        .trim()
+        .split('\n')
+        .map((row) => row.split(','))
       const jsonArray = rows.map((row) =>
-        row.reduce((obj, value, index) => {
-          obj[headers[index]] = value;
-          return obj;
+        row.reduce((obj: Record<string, string>, value: string, index: number) => {
+          obj[headers[index]] = value
+          return obj
         }, {})
-      );
-      setJson(JSON.stringify(jsonArray, null, 2));
+      )
+      setJson(JSON.stringify(jsonArray, null, 2))
     } catch (error) {
-      alert('Invalid CSV format!');
+      console.error(error)
+      alert('Invalid CSV format!')
     }
-  };
+  }
 
   // Control + Enter로 변환 기능 실행
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.key === 'Enter') {
-        handleConvert();
+        handleConvert()
       }
-    };
-    window.addEventListener('keydown', handleKeyDown);
+    }
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [csv]);
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [csv])
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 text-black">
       <h1 className="text-3xl font-bold mb-2 text-center">CSV to JSON Converter</h1>
       <p className="text-center mb-6 text-gray-700">
-        Paste your CSV data below and press <strong>Ctrl + Enter</strong> or click the convert button to generate JSON.
+        Paste your CSV data below and press <strong>Ctrl + Enter</strong> or click the convert
+        button to generate JSON.
       </p>
       <textarea
         className="w-full h-40 p-4 border rounded mb-4 text-black"
@@ -55,5 +60,5 @@ export default function CsvToJson() {
       </button>
       <pre className="w-full h-40 p-4 border rounded bg-white text-black overflow-auto">{json}</pre>
     </div>
-  );
+  )
 }

@@ -2,4 +2,8 @@
 
 npm run build
 
-netlify deploy --dir=out # --prod
+if [ "$1" = "prod" ]; then
+    netlify deploy --dir=out --prod
+else
+    netlify deploy --dir=out
+fi
