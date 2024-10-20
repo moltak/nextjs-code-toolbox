@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 배경 -->
+  <rect width="100" height="100" fill="#282C34" />
+  <!-- 코드 심볼 -->
+  <polyline points="35,30 25,50 35,70" fill="none" stroke="#61DAFB" stroke-width="5" />
+  <polyline points="65,30 75,50 65,70" fill="none" stroke="#61DAFB" stroke-width="5" />
+  <!-- 도구 아이콘 (렌치) -->
+  <path
+    d="M60,40 
+           L65,35 
+           A5,5 0 0,1 75,45 
+           L70,50 
+           L75,55 
+           A5,5 0 0,1 65,65 
+           L60,60 
+           L50,70 
+           L45,65 
+           L55,55 
+           L50,50 
+           L60,40 Z"
+    fill="#E5C07B" />
+</svg>
